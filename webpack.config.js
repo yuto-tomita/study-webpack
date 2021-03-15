@@ -18,11 +18,16 @@ module.exports = {
 	module: {
 		rules: [
 			{
-				test: /\.txt$/,
+				test: /\.js$/,
 				exclude: /node_modules/,
 				use: [
 					{
-						loader: 'raw-loader'
+						// バンドル前にバベル(ex5形式にコンパイル)するためのプラグイン
+						loader: 'babel-loader',
+						options: {
+							// 使用するpresetsはbabel公式を参照
+							presets: ['@babel/preset-env']
+						}
 					}
 				]
 			}
