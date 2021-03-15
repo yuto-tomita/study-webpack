@@ -14,5 +14,18 @@ module.exports = {
 	output: {
 		path: __dirname + '/dist',
 		filename: 'main.js'
+	},
+	module: {
+		rules: [
+			{
+				test: /\.txt$/,
+				exclude: /node_modules/,
+				use: [
+					{
+						loader: 'raw-loader'
+					}
+				]
+			}
+		]
 	}
 }
