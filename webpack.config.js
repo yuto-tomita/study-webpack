@@ -1,4 +1,5 @@
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 // in ./src/index.js out ./dist/hogehoge.jsとなっている
 // in ./src/index.js out ./dist/main.jsとなっている
 module.exports = {
@@ -13,16 +14,16 @@ module.exports = {
 	},
 	entry: path.resolve(__dirname, 'src/index.tsx'),
 	output: {
-		path: path.resolve(__dirname, 'dist/js'),
+		path: path.resolve(__dirname, 'dist'),
 		filename: 'bundle.js'
 	},
 	module: {
 		rules: [
 			{
 				// tsxを対象に含める
-				test: [/\.ts$/, /\.tsx$/, /\.js$/],
+				test:/\.ts$|tsx/,
 				exclude: /node_modules/,
-				loader: 'ts-loader',
+				use: 'babel-loader'
 				// use: [
 				// 	{
 				// 		// バンドル前にバベル(ex5形式にコンパイル)ためのプラグインとtypescriptを変換するためのプラグイン
@@ -41,9 +42,17 @@ module.exports = {
 		]
 	},
 	resolve: {
+		modules: [path.resolve(__dirname, 'src'), path.resolve(__dirname, 'node_modules')],
 		// importで拡張子を省略するためのもの、設定値は上書きされるため、省略したい拡張子は全部列挙しないといけない
 		extensions: ['.js', '.jsx', '.json', '.ts', '.tsx']
-	}
+	},
+	plugins: [
+		new HtmlWebpackPlugin({
+			// publicPath: 'dist',
+			// filename: 'index.html',
+			template: 'src/html/index.html',
+		})
+	]
 }
 
 // ハマったところ
