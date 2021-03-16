@@ -18,7 +18,8 @@ module.exports = {
 	module: {
 		rules: [
 			{
-				test: /\.js$/,
+				// jsxも対象に含める
+				test: /\.js[x]?$/,
 				exclude: /node_modules/,
 				use: [
 					{
@@ -26,11 +27,19 @@ module.exports = {
 						loader: 'babel-loader',
 						options: {
 							// 使用するpresetsはbabel公式を参照
-							presets: ['@babel/preset-env']
+							presets: [
+								'@babel/preset-env',
+								'@babel/preset-react'
+							],
+							plugins: ['@babel/plugin-syntax-jsx']
 						}
 					}
 				]
 			}
 		]
+	},
+	resolve: {
+		// importで拡張子を省略するためのもの、設定値は上書きされるため、省略したい拡張子は全部列挙しないといけない
+		extensions: ['.js', '.jsx', '.json']
 	}
 }
