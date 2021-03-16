@@ -12,7 +12,7 @@ module.exports = {
 	},
 	entry: './src/index.js',
 	output: {
-		path: __dirname + '/dist',
+		path: __dirname + '/dist/js',
 		filename: 'main.js'
 	},
 	module: {
