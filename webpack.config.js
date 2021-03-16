@@ -1,3 +1,4 @@
+const path = require('path');
 // in ./src/index.js out ./dist/hogehoge.jsとなっている
 // in ./src/index.js out ./dist/main.jsとなっている
 module.exports = {
@@ -10,36 +11,41 @@ module.exports = {
 	watchOptions: {
 		ignored: /node_modules/
 	},
-	entry: './src/index.js',
+	entry: path.resolve(__dirname, 'src/index.tsx'),
 	output: {
-		path: __dirname + '/dist/js',
-		filename: 'main.js'
+		path: path.resolve(__dirname, 'dist/js'),
+		filename: 'bundle.js'
 	},
 	module: {
 		rules: [
 			{
-				// jsxも対象に含める
-				test: /\.js[x]?$/,
+				// tsxを対象に含める
+				test: [/\.ts$/, /\.tsx$/, /\.js$/],
 				exclude: /node_modules/,
-				use: [
-					{
-						// バンドル前にバベル(ex5形式にコンパイル)するためのプラグイン
-						loader: 'babel-loader',
-						options: {
-							// 使用するpresetsはbabel公式を参照
-							presets: [
-								'@babel/preset-env',
-								'@babel/preset-react'
-							],
-							plugins: ['@babel/plugin-syntax-jsx']
-						}
-					}
-				]
+				loader: 'ts-loader',
+				// use: [
+				// 	{
+				// 		// バンドル前にバベル(ex5形式にコンパイル)ためのプラグインとtypescriptを変換するためのプラグイン
+				// 		options: {
+				// 			// 使用するpresetsはbabel公式を参照
+				// 			presets: [
+				// 				'@babel/preset-env',
+				// 				'@babel/preset-react',
+				// 				// '@babel/preset-typescript'
+				// 			],
+				// 			plugins: ['@babel/plugin-syntax-jsx']
+				// 		}
+				// 	}
+				// ]
 			}
 		]
 	},
 	resolve: {
 		// importで拡張子を省略するためのもの、設定値は上書きされるため、省略したい拡張子は全部列挙しないといけない
-		extensions: ['.js', '.jsx', '.json']
+		extensions: ['.js', '.jsx', '.json', '.ts', '.tsx']
 	}
 }
+
+// ハマったところ
+// errorno2でずっとはまった
+// 結局のところbabelの設定ファイルをちゃんと分けて記述することでエラーの回避に成功
