@@ -48,8 +48,9 @@ module.exports = {
 	},
 	plugins: [
 		new HtmlWebpackPlugin({
-			// publicPath: 'dist',
-			// filename: 'index.html',
+			// src/html配下のHTMLのテンプレートを読み込んでdist配下にindex.htmlを出力する
+			publicPath: 'dist',
+			filename: 'index.html',
 			template: 'src/html/index.html',
 		})
 	]
@@ -58,3 +59,4 @@ module.exports = {
 // ハマったところ
 // errorno2でずっとはまった
 // 結局のところbabelの設定ファイルをちゃんと分けて記述することでエラーの回避に成功
+// useのところ配列形式で書くとエラーが起きる
