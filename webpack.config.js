@@ -23,7 +23,7 @@ module.exports = {
 				// tsxを対象に含める
 				test:/\.ts$|tsx/,
 				exclude: /node_modules/,
-				use: 'babel-loader'
+				use: ['babel-loader', 'ts-loader']
 				// use: [
 				// 	{
 				// 		// バンドル前にバベル(ex5形式にコンパイル)ためのプラグインとtypescriptを変換するためのプラグイン

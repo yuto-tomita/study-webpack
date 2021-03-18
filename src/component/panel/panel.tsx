@@ -1,4 +1,5 @@
 import React from 'react';
+// import styles from './panel.css'
 
 export default class Panel extends React.Component {
 	constructor(props: any) {
@@ -11,7 +12,7 @@ export default class Panel extends React.Component {
 
 	render() {
 		return (
-			<p className="change-color">aiueo</p>
+			<p>aiueo</p>
 		)
 	}
 }
