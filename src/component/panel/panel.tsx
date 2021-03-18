@@ -12,7 +12,7 @@ export default class Panel extends React.Component {
 
 	render() {
 		return (
-			<p>aiueo</p>
+			<p className="text-5xl font-serif ml-20">aiueo</p>
 		)
 	}
 }

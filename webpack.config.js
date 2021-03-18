@@ -20,24 +20,14 @@ module.exports = {
 	module: {
 		rules: [
 			{
+				test: /\.css$/i,
+        use: ['style-loader', 'css-loader', 'postcss-loader'],
+			},
+			{
 				// tsxを対象に含める
 				test:/\.ts$|tsx/,
 				exclude: /node_modules/,
 				use: ['babel-loader', 'ts-loader']
-				// use: [
-				// 	{
-				// 		// バンドル前にバベル(ex5形式にコンパイル)ためのプラグインとtypescriptを変換するためのプラグイン
-				// 		options: {
-				// 			// 使用するpresetsはbabel公式を参照
-				// 			presets: [
-				// 				'@babel/preset-env',
-				// 				'@babel/preset-react',
-				// 				// '@babel/preset-typescript'
-				// 			],
-				// 			plugins: ['@babel/plugin-syntax-jsx']
-				// 		}
-				// 	}
-				// ]
 			}
 		]
 	},
