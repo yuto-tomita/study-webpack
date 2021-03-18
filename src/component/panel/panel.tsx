@@ -9,6 +9,6 @@ export default class Panel extends React.Component {
   }
 
   render() {
-    return <p className="text-5xl font-serif ml-20">aiueo</p>
+    return <p className="text-5xl font-serif ml-20">かきくけこ</p>
   }
 }
