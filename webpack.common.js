@@ -1,21 +1,12 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-// in ./src/index.js out ./dist/hogehoge.jsとなっている
-// in ./src/index.js out ./dist/main.jsとなっている
+
 module.exports = {
-  // 開発環境
-  mode: 'development',
-  // 本番環境もある
-  // mode: 'production',
   // webpack --watchコマンドを実行する
   entry: path.resolve(__dirname, 'src/index.tsx'),
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
-  },
-  devServer: {
-    contentBase: './dist',
-    open: true,
   },
   module: {
     rules: [
