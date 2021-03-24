@@ -7,7 +7,9 @@ const App = (): JSX.Element => {
     <Router>
       <ul>
         <li>
-          <Link to="/test">サンプルページ</Link>
+          <Link to="/test" className="text-blue-500 hover:opacity-50">
+            サンプルページ
+          </Link>
         </li>
       </ul>
       <Switch>
